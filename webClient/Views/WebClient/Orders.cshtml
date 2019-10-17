@@ -1,0 +1,61 @@
+﻿@model List<webClient.Models.Order>
+@{
+    ViewData["Title"] = "Order";
+}
+
+<h2>Welcome</h2>
+    <input type="hidden" value="@Model"/>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    OrderNumber
+                </th>
+                <th>
+                    AmountPrices
+                </th>
+                <th>
+                    CreateDate
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in @Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => order.OrderNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => order.AmountPrices)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => order.CreateDate)
+                    </td>
+
+                    <td>
+                        <a asp-action="CommingSoon" asp-route-id="1">Details</a> | 
+                        <a asp-action="Shipping">Shipping</a>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    <h2>Total Amount : @Model.Sum(order=>order.AmountPrices)</h2>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    <a asp-action="MyCart">go to mycart</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+<div>
+   
+</div>

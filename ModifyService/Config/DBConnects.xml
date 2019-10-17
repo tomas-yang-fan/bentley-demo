@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<databaseList>
+  <database name="modify">
+    <connectionString>data source=E11DSQL04\S7EDIDB01;database=EDI;user id=EDIDbo;password=4ediuse0nly;Timeout=30;connection lifetime=300; min pool size=2; max pool size=50</connectionString>
+  </database>
+</databaseList>

@@ -1,0 +1,61 @@
+﻿@model webClient.Models.MyCart
+@{
+    ViewData["Title"] = "My Cart";
+}
+
+<h2>Welcome</h2>
+<form asp-action="MyCart">
+    <input type="hidden" value="@Model.items"/>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    ItemDescription
+                </th>
+                <th>
+                    Qty
+                </th>
+                <th>
+                    UnitPrice
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model.items)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ItemDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Qty)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitPrice)
+                    </td>
+
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@item.ItemDescription">Delete</a>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    <h2>Total Amount : @Model.PriceAmount</h2>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" value="Pay" class="btn btn-primary" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+   </form>
+
+<div>
+    <a asp-action="Orders">go to orders</a>
+</div>

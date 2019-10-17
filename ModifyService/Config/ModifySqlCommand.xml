@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dataOperations>
+  <dataCommand name="AddItemToCart" database="modify" commandType="Text">
+    <commandText>
+      <![CDATA[
+INSERT INTO Tomas_Cart (
+	UserID
+	,ItemNumber
+	,ItemDescription
+	,UnitPrice
+	,Cost
+	,Qty
+	,InDate
+	,InUser
+	)
+VALUES (
+	'tomas'
+	,@ItemNumber
+	,@ItemDescription
+	,@UnitPrice
+	,@Cost
+	,@Qty
+	,GetDate()
+	,'Tomas yang'
+	)
+
+      	]]>
+    </commandText>
+    <parameters>
+      <param name="@ItemNumber" dbType="AnsiString" direction="Input" />
+      <param name="@ItemDescription" dbType="AnsiString" direction="Input" />
+      <param name="@UnitPrice" dbType="Decimal" direction="Input" />
+      <param name="@Cost" dbType="Decimal" direction="Input" />
+      <param name="@Qty" dbType="Int32" direction="Input" />
+    </parameters>
+  </dataCommand>
+</dataOperations>
