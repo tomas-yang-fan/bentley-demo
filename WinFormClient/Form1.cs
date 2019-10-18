@@ -21,8 +21,16 @@ namespace WinFormClient
         private string UpDataOrderUrl;
         private async void ShipOrderForm_Load(object sender, EventArgs e)
         {
-            orders = await GetOrders();
-            this.dataGridView1.DataSource = new BindingList<Order>(orders);
+            try
+            {
+                orders = await GetOrders();
+                this.dataGridView1.DataSource = new BindingList<Order>(orders);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Can not find orders");
+            }
+
         }
 
         private async Task<IList<Order>> GetOrders()
@@ -34,15 +42,34 @@ namespace WinFormClient
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            int transactionNumber = (int)this.dataGridView1.SelectedRows[0].Cells["TransactionNumber"].Value;
-            UpDataOrderUrl = ConfigurationManager.AppSettings["UpDataOrderUrl"];
-             await HttpAPIClient.GetResponse($"{UpDataOrderUrl}?id={transactionNumber}", null,"PUT");
+            try
+            {
+                int transactionNumber = (int)this.dataGridView1.SelectedRows[0].Cells["TransactionNumber"].Value;
+                UpDataOrderUrl = ConfigurationManager.AppSettings["UpDataOrderUrl"];
+                await HttpAPIClient.GetResponse($"{UpDataOrderUrl}?id={transactionNumber}", null, "PUT");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Can not find orders");
+            }
+
+
         }
 
         private async void button2_Click(object sender, EventArgs e)
         {
-            orders = await GetOrders();
-            this.dataGridView1.DataSource = new BindingList<Order>(orders);
+            try
+            {
+                orders = await GetOrders();
+                this.dataGridView1.DataSource = new BindingList<Order>(orders);
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Can not find orders");
+            }
+
+
         }
     }
 }
