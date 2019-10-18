@@ -18,12 +18,12 @@ namespace Common
             this.connString = conStr;
         }
 
-        public SqlConnection conn;
+        //public SqlConnection conn;
 
         public int ExecuteNonQuery(string sql)
         {
             int a = -1;
-            using (conn = new SqlConnection(connString))
+            using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -36,7 +36,7 @@ namespace Common
         public DataSet ExecuteQuery(string sql)
         {
             DataSet ds = new DataSet();
-            using (conn = new SqlConnection(connString))
+            using (SqlConnection conn = new SqlConnection(connString))
             {
 
                 conn.Open();
@@ -52,7 +52,7 @@ namespace Common
         public IList<T> ExecuteQueryList<T>(string sql)
         {
             DataSet ds = new DataSet();
-            using (conn = new SqlConnection(connString))
+            using (SqlConnection conn = new SqlConnection(connString))
             {
 
                 conn.Open();

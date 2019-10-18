@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "webClient", "webClient\webClient.csproj", "{ACB37CB1-B981-4D1F-AEB2-103B615F8E74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "winClient", "winClient\winClient.csproj", "{99F72984-E9C5-4ACC-B830-B3A486486533}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "winClient", "winClient\winClient.csproj", "{99F72984-E9C5-4ACC-B830-B3A486486533}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormClient", "WinFormClient\WinFormClient.csproj", "{A0E53BC1-F7F7-4AC7-B75D-377D520FB49F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{99F72984-E9C5-4ACC-B830-B3A486486533}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99F72984-E9C5-4ACC-B830-B3A486486533}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99F72984-E9C5-4ACC-B830-B3A486486533}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0E53BC1-F7F7-4AC7-B75D-377D520FB49F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0E53BC1-F7F7-4AC7-B75D-377D520FB49F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0E53BC1-F7F7-4AC7-B75D-377D520FB49F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0E53BC1-F7F7-4AC7-B75D-377D520FB49F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

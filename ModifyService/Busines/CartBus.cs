@@ -11,6 +11,8 @@ namespace ModifyService.Busines
         public int DeleteCartItem(string itemNumber);
 
         public void addToOrder();
+
+        public int UpdataOrder(int transactionNumber);
     }
     public class CartBus:ICartBus
     {
@@ -45,7 +47,15 @@ namespace ModifyService.Busines
                             ";
             return this.cartDAO.AddItemToCart(sql);
         }
+        public int UpdataOrder(int transactionNumber)
+        {
 
+            string sql = $@"Update Tomas_OrderMaster 
+                            Set Status = 'S'
+                            Where TransactionNumber = {transactionNumber}
+                            ";
+            return this.cartDAO.UpdataOrder(sql);
+        }
         public int DeleteCartItem(string itemNumber)
         {
             string sql = $@"delete Tomas_Cart

@@ -23,13 +23,18 @@ namespace ModifyService.Controllers
         }
 
         [HttpPost]
-        public string addToOrder()
+        public void addToOrder()
         {
             this.cartbus.addToOrder();
-            return "";
+          
         }
-         
-        
-        
+        [HttpPut]
+        public void UpdataOrder(int id)
+        {
+            this.cartbus.UpdataOrder(id);
+
+        }
+
+
     }
 }

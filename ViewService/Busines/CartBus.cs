@@ -41,9 +41,14 @@ from Tomas_Cart
         public IList<Order> GetOrderInfo()
         {
             string sql = @"
-SELECT OrderNumber
+SELECT 
+    TransactionNumber
+    ,OrderNumber
 	,PriceAmount
+    ,CostAmount
 	,STATUS
+    ,InDate
+    ,InUser
 FROM Tomas_OrderMaster
 ";
             return cartDAO.GetOrderInfo(sql);

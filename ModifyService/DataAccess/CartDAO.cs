@@ -13,6 +13,7 @@ namespace ModifyService.Busines
         public int DeleteCartItem(string sql);
 
         public int addToOrder(string sql);
+        public int UpdataOrder(string sql);
     }
     public class CartDAO:ICartDAO
     {
@@ -27,7 +28,10 @@ namespace ModifyService.Busines
         {
             return sqlhelper.ExecuteNonQuery(sql);
         }
-
+        public int UpdataOrder(string sql)
+        {
+            return sqlhelper.ExecuteNonQuery(sql);
+        }
         public int DeleteCartItem(string sql)
         {
             return sqlhelper.ExecuteNonQuery(sql);
