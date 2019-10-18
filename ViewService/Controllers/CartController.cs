@@ -16,16 +16,20 @@ namespace ViewService.Controllers
 
         private readonly ILogger<CartController> _logger;
 
-        public CartController(ILogger<CartController> logger)
+        private ICartBus cartBus;
+
+        public CartController(ILogger<CartController> logger,ICartBus cartBus)
         {
+            this.cartBus = cartBus;
             _logger = logger;
         }
 
         public IList<Item> list()
         {
-            CartBus cartbus = new CartBus();
-            return cartbus.GetCartInfo();
-           
+            var dd =cartBus.GetCartInfo();
+            return dd;
+
+
         }
 
        

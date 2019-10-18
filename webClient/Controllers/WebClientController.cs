@@ -12,8 +12,11 @@ namespace webClient.Controllers
     public class WebClientController : Controller
     {
 
-        // 
-        // GET: /HelloWorld/
+        private IMyClientBus myClientBus;
+        public WebClientController(IMyClientBus myClientBus)
+        {
+            this.myClientBus = myClientBus;
+        }
 
         public IActionResult Buy()
         {
@@ -23,9 +26,8 @@ namespace webClient.Controllers
         [HttpPost]
         public IActionResult Buy(Item item)
         {
-            MyClientBus myclient = new MyClientBus();
-            
-            myclient.addToMyCart(item);
+
+            myClientBus.AddToMyCart(item);
             //ViewData["Message"] = "buy something successfully!";
             return View(new Item());
         }
@@ -49,8 +51,8 @@ namespace webClient.Controllers
             //items.Add(item1);
             //items.Add(item2);
             //mycart.items = items;
-            MyClientBus myclient = new MyClientBus();
-            mycart.items = await myclient.GetCartList();
+
+            mycart.items = await myClientBus.GetCartList();
             return View(mycart);
         }
 
@@ -60,51 +62,69 @@ namespace webClient.Controllers
             return View(new MyCart());
         }
 
-        public IActionResult Orders()
-        {
-            List<Order> orders = new List<Order>();
-            Order order = new Order();
-            List<Item> items = new List<Item>();
-            var item1 = new Item();
-            item1.ItemDescription = "notebook";
-            item1.Qty = 3;
-            item1.UnitPrice = 4;
 
-            var item2 = new Item();
-            item2.ItemDescription = "computers";
-            item2.Qty = 1;
-            item2.UnitPrice = 10;
-            items.Add(item1);
-            items.Add(item2);
-            order.Items = items;
-            order.OrderNumber = Guid.NewGuid().ToString();
-            order.CreateDate = DateTime.Now.ToString();
-            orders.Add(order);
-            return  View(orders);
+        public IActionResult Delete(string id)
+        {
+            myClientBus.DeleteCartItem(id);
+            return RedirectToAction("MyCart");
+
         }
 
-
-        public IActionResult Shipping()
+        public async Task<IActionResult> Orders()
         {
-           
-            Shipping shipping = new Shipping();
-            List<Item> items = new List<Item>();
-            var item1 = new Item();
-            item1.ItemDescription = "notebook";
-            item1.Qty = 3;
-            item1.UnitPrice = 4;
+            IList<Order> orders = new List<Order>();
+            //Order order = new Order();
+            //List<Item> items = new List<Item>();
+            //var item1 = new Item();
+            //item1.ItemDescription = "notebook";
+            //item1.Qty = 3;
+            //item1.UnitPrice = 4;
 
-            var item2 = new Item();
-            item2.ItemDescription = "computers";
-            item2.Qty = 1;
-            item2.UnitPrice = 10;
-            items.Add(item1);
-            items.Add(item2);
-            shipping.Items = items;
-            shipping.OrderNumber = Guid.NewGuid().ToString();
-            //shipping.TrackingNumber = Guid.NewGuid().ToString();
-            shipping.IsShipped = "No";
-            shipping.ShipCharge = 0.1m;
+            //var item2 = new Item();
+            //item2.ItemDescription = "computers";
+            //item2.Qty = 1;
+            //item2.UnitPrice = 10;
+            //items.Add(item1);
+            //items.Add(item2);
+            //order.Items = items;
+            //order.OrderNumber = Guid.NewGuid().ToString();
+            //order.CreateDate = DateTime.Now.ToString();
+            //orders.Add(order);
+            orders = await this.myClientBus.GetOrderList();
+            return View(orders);
+        }
+
+        [HttpPost]
+        public IActionResult Pay()
+        {
+            this.myClientBus.AddToOrders();
+            return RedirectToAction("Orders");
+        }
+
+        public async Task<IActionResult> Shipping(string id)
+        {
+
+            IList<Shipping> shippingList = new List<Shipping>();
+            var shipping = new Shipping();
+            //List<Item> items = new List<Item>();
+            //var item1 = new Item();
+            //item1.ItemDescription = "notebook";
+            //item1.Qty = 3;
+            //item1.UnitPrice = 4;
+
+            //var item2 = new Item();
+            //item2.ItemDescription = "computers";
+            //item2.Qty = 1;
+            //item2.UnitPrice = 10;
+            //items.Add(item1);
+            //items.Add(item2);
+            //shipping.OrderNumber = Guid.NewGuid().ToString();
+            shippingList = await this.myClientBus.GetShippingList(id);
+            if (shippingList.Count > 0)
+            {
+                shipping = shippingList[0];
+            }
+            
             return View(shipping);
         }
         public IActionResult CommingSoon(List<Item> items)

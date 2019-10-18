@@ -4,8 +4,8 @@
 }
 
 <h2>Welcome</h2>
-<form asp-action="MyCart">
-    <input type="hidden" value="@Model.items"/>
+<form asp-action="Pay">
+    @*<input type="hidden" asp-for="items" value="@Model.items"/>*@
     <table class="table">
         <thead>
             <tr>
@@ -36,7 +36,7 @@
                     </td>
 
                     <td>
-                        <a asp-action="Delete" asp-route-id="@item.ItemDescription">Delete</a>
+                        <a asp-action="Delete" asp-route-id="@item.ItemNumber">Delete</a>
                     </td>
                 </tr>
             }

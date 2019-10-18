@@ -8,17 +8,15 @@ namespace webClient.Models
 {
     public class Shipping
     {
+        public string ShippingNumber { get; set; }
         public string TrackingNumber { get; set; }
         public string OrderNumber { get; set; }
-        public decimal AmountPrices { get; set; }
 
-        public decimal ShipCharge { get; set; }
+        public string ShipTo { get; set; }
 
-        public string IsShipped { get; set; }
+        public string ShipFrom { get; set; }
 
-        public string From { get; set; }
+        public string Status { get; set; }
 
-        public string To { get; set; }
-        public List<Item> Items { get; set; }
     }
 }

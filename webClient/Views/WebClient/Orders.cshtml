@@ -28,12 +28,9 @@
                         @Html.DisplayFor(modelItem => order.OrderNumber)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => order.AmountPrices)
+                        @Html.DisplayFor(modelItem => order.PriceAmount)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => order.CreateDate)
-                    </td>
-
+                
                     <td>
                         <a asp-action="CommingSoon" asp-route-id="1">Details</a> | 
                         <a asp-action="Shipping">Shipping</a>
@@ -42,7 +39,7 @@
             }
             <tr>
                 <td>
-                    <h2>Total Amount : @Model.Sum(order=>order.AmountPrices)</h2>
+                    <h2>Total Amount : @Model.Sum(order=>order.PriceAmount)</h2>
                 </td>
                 <td>
                 </td>

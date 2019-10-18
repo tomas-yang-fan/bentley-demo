@@ -17,8 +17,10 @@ namespace ModifyService.Controllers
 
         private readonly ILogger<CartController> _logger;
 
-        public CartController(ILogger<CartController> logger)
+        private ICartBus cartbus;
+        public CartController(ILogger<CartController> logger,ICartBus cartbus)
         {
+            this.cartbus = cartbus;
             _logger = logger;
         }
         public string info()
@@ -27,13 +29,18 @@ namespace ModifyService.Controllers
         }
 
         [HttpPost]
-        public string add(Item item)
+        public int add(Item item)
         {
-            CartBus cartbus = new CartBus();
-            cartbus.AddItemToCart(item);
-            return "Success";
+            return this.cartbus.AddItemToCart(item);
         }
 
-       
+        [HttpPost]
+        public int delete(string itemNumber)
+        {
+            return this.cartbus.DeleteCartItem(itemNumber);
+            
+        }
+
+
     }
 }

@@ -15,10 +15,10 @@
                     OrderNumber
                 </th>
                 <th>
-                    ShipCharge
+                    ShipTo
                 </th>
                 <th>
-                    IsShipped
+                    ShipFrom
                 </th>
                 <th>
                     
@@ -35,13 +35,12 @@
                     @Html.DisplayFor(modelItem => @Model.OrderNumber)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => @Model.ShipCharge)
+                    @Html.DisplayFor(modelItem => @Model.ShipTo)
                 </td>
 
                 <td>
-                    @Html.DisplayFor(modelItem => @Model.IsShipped)
-                    |
-
+                    @Html.DisplayFor(modelItem => @Model.ShipFrom)
+                    
                 </td>
 
                 <td>

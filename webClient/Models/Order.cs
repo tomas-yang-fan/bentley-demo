@@ -9,21 +9,9 @@ namespace webClient.Models
     public class Order
     {
         public string OrderNumber { get; set; }
-        public decimal AmountPrices {
-            get
-            {
-                if (Items.Any())
-                {
-                    return Items.Sum(r => r.Qty * r.UnitPrice);
-                }
-                else
-                {
-                    return 0;
-                }
 
-            }
-        }
-
+        public decimal PriceAmount { get; set; }
+       
         public string CreateDate { get; set; }
         public List<Item> Items { get; set; }
     }

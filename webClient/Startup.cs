@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using webClient.Busines;
+using webClient.Models;
 
 namespace webClient
 {
@@ -24,6 +26,8 @@ namespace webClient
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<ApplicationSettings>(options => Configuration.GetSection("ApplicationSettings").Bind(options));
+            services.AddSingleton<IMyClientBus, MyClientBus>();
             services.AddControllersWithViews();
             
         }

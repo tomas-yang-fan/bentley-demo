@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ModifyService.Busines;
+using ModifyService.Data;
 
 namespace ModifyService
 {
@@ -25,6 +27,9 @@ namespace ModifyService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<ApplicationSettings>(options => Configuration.GetSection("ApplicationSettings").Bind(options));
+            services.AddSingleton<ICartBus, CartBus>();
+            services.AddSingleton<ICartDAO, CartDAO>();
             services.AddControllers();
         }
 

@@ -7,5 +7,9 @@ namespace ViewService.Data
 {
     public class Order
     {
+        public string OrderNumber { get; set; }
+        public Decimal PriceAmount { get; set; }
+
+        public string Status { get; set; }
     }
 }

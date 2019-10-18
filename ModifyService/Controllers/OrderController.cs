@@ -4,27 +4,32 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ModifyService.Busines;
+using ModifyService.Data;
 
 namespace ModifyService.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class OrderController : ControllerBase
     {
 
         private readonly ILogger<OrderController> _logger;
-
-        public OrderController(ILogger<OrderController> logger)
+        private ICartBus cartbus;
+        public OrderController(ILogger<OrderController> logger, ICartBus cartbus)
         {
+            this.cartbus = cartbus;
             _logger = logger;
         }
 
         [HttpPost]
-        public string info()
+        public string addToOrder()
         {
+            this.cartbus.addToOrder();
             return "";
         }
          
+        
         
     }
 }

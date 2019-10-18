@@ -8,9 +8,18 @@ namespace webClient.Models
 {
     public class Item
     {
+        private string itemNumber;
         public string ItemNumber { get {
-                return DateTime.Now.ToString("yyMMddhhmmss");
-            } }
+                if (string.IsNullOrEmpty(itemNumber))
+                {
+                    itemNumber = DateTime.Now.ToString("yyMMddhhmmss");
+                }
+                
+                return itemNumber;
+            } set {
+                itemNumber = value;
+            }
+        }
         public string ItemDescription { get; set; }
         public int Qty { get; set; }
 

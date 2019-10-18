@@ -12,28 +12,11 @@ namespace Common
 {
     public class SqlHelper
     {
-        public string connString = "Data Source=DESKTOP-TSM05KS;database=Tomas;user id=MicrosoftAccount\\xxx;password=xxx;Initial Catalog=Tomas;Integrated Security=TRUE";
-
-        //public string connString = "data source=xxxx;database=xx;user id=xx;password=xxx;Timeout=30;connection lifetime=300; min pool size=2; max pool size=50";
-
-        public IHostingEnvironment env { get; }
-        public IConfigurationRoot Configuration { get; }
-
-        public string ConfigPath = Path.Combine(AppContext.BaseDirectory, "Config");
-        public SqlHelper()
+        public string connString = "";
+        public SqlHelper(string conStr)
         {
-            //var builder = new ConfigurationBuilder()
-            //    .SetBasePath(AppContext.BaseDirectory)
-            //    .AddXmlFile("Config/DBConnects.xml", optional: true, reloadOnChange: true)
-            //    .AddXmlFile("Config/ModifySqlCommand.xml", optional: true, reloadOnChange: true)
-            //    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            //Configuration = builder.Build();
-            //XMLDoc
-            //XDocument dbConnects = new XDocument();
-            //dbConnects.
+            this.connString = conStr;
         }
-
-
 
         public SqlConnection conn;
 

@@ -1,4 +1,5 @@
 ﻿using Common;
+using Microsoft.Extensions.Options;
 using ModifyService.Data;
 using System;
 using System.Collections.Generic;
@@ -7,18 +8,35 @@ using System.Threading.Tasks;
 
 namespace ModifyService.Busines
 {
-    public class CartDAO
+    public interface ICartDAO {
+        public int AddItemToCart(string sql);
+        public int DeleteCartItem(string sql);
+
+        public int addToOrder(string sql);
+    }
+    public class CartDAO:ICartDAO
     {
         public SqlHelper sqlhelper;
 
-        public CartDAO()
+        public CartDAO(IOptions<ApplicationSettings> applicationSettings)
         {
-            sqlhelper = new SqlHelper();
+            var sqlConString = applicationSettings.Value.SqlConString;
+            sqlhelper = new SqlHelper(sqlConString);
         }
-        public void AddItemToCart(string sql)
+        public int AddItemToCart(string sql)
         {
-            sqlhelper.ExecuteNonQuery(sql);
+            return sqlhelper.ExecuteNonQuery(sql);
         }
+
+        public int DeleteCartItem(string sql)
+        {
+            return sqlhelper.ExecuteNonQuery(sql);
+        }
+        public int addToOrder(string sql)
+        {
+            return sqlhelper.ExecuteNonQuery(sql);
+        }
+        
 
 
     }
