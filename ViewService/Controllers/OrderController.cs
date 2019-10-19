@@ -21,10 +21,26 @@ namespace ViewService.Controllers
             this.cartBus = cartBus;
             _logger = logger;
         }
+        public string test()
+        {
+            return "test";
+        }
 
         public IList<Order> list()
         {
-            return cartBus.GetOrderInfo();
+            try
+            {
+                return cartBus.GetOrderInfo();
+            }
+            catch(Exception ex)
+            {
+                IList<Order> orderlist = new List<Order>();
+                Order o = new Order();
+                o.OrderNumber = ex.Message;
+                orderlist.Add(o);
+                return orderlist;
+            }
+           
         }
 
 

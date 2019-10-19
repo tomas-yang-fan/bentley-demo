@@ -56,7 +56,7 @@ namespace webClient.Busines
 
         public async void DeleteCartItem(string ItemNumber)
         {
-            await HttpAPIClient.GetResponse($"{DeleteCartItemUrl}?itemNumber={ItemNumber}", null,"POST");
+            await HttpAPIClient.GetResponse($"{DeleteCartItemUrl}?itemNumber={ItemNumber}", null,"DELETE");
         }
 
         public async void AddToOrders()

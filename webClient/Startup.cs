@@ -56,7 +56,7 @@ namespace webClient
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=WebClient}/{action=Buy}");
+                    pattern: "{controller=Buywill}/{action=Buy}");
             });
         }
     }

@@ -34,7 +34,7 @@ namespace ModifyService.Controllers
             return this.cartbus.AddItemToCart(item);
         }
 
-        [HttpPost]
+        [HttpDelete]
         public int delete(string itemNumber)
         {
             return this.cartbus.DeleteCartItem(itemNumber);

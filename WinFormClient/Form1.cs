@@ -16,7 +16,7 @@ namespace WinFormClient
         {
             InitializeComponent();
         }
-        private IList<Order> orders = new List<Order>();
+        private List<Order> orders = new List<Order>();
         private string GetOrdersUrl;
         private string UpDataOrderUrl;
         private async void ShipOrderForm_Load(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace WinFormClient
 
         }
 
-        private async Task<IList<Order>> GetOrders()
+        private async Task<List<Order>> GetOrders()
         {
             GetOrdersUrl = ConfigurationManager.AppSettings["GetOrdersUrl"];
             var response = await HttpAPIClient.GetResponse(GetOrdersUrl, null);
@@ -46,7 +46,16 @@ namespace WinFormClient
             {
                 int transactionNumber = (int)this.dataGridView1.SelectedRows[0].Cells["TransactionNumber"].Value;
                 UpDataOrderUrl = ConfigurationManager.AppSettings["UpDataOrderUrl"];
+                this.orders.ForEach(order =>
+                {
+                    if(order.TransactionNumber == transactionNumber)
+                    {
+                        order.Status = "S";
+                    }
+                });
+                this.dataGridView1.Refresh();
                 await HttpAPIClient.GetResponse($"{UpDataOrderUrl}?id={transactionNumber}", null, "PUT");
+                
             }
             catch (Exception)
             {
